@@ -22,7 +22,6 @@ import LocationNeededModal from '../components/navigation/LocationNeededModal';
 import LoadingOverlay from '../components/navigation/LoadingOverlay';
 import RouteErrorCard from '../components/navigation/RouteErrorCard';
 import InstallPrompt from '../components/InstallPrompt';
-import { optimizeRoute, calculateRouteTotalDistance } from '../functions/routeOptimizer';
 import { fetchRoute, getProgressOnRoute, getNextInstruction, isOffRoute, formatTime, formatDistance } from '../functions/navigationEngine';
 import { toast } from 'sonner';
 import L from 'leaflet';
@@ -395,12 +394,7 @@ export default function MapPage() {
     const newWaypoints = [...waypoints, location];
     setWaypoints(newWaypoints);
     
-    // Optimize route when waypoints change
-    if (userLocation && alerts.length > 0) {
-      const optimized = await optimizeRoute(userLocation, newWaypoints, alerts);
-      setOptimizedRoute(optimized);
-    }
-  };
+     };
 
   const handleRemoveWaypoint = (index) => {
     const newWaypoints = waypoints.filter((_, i) => i !== index);
